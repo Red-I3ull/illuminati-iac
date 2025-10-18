@@ -4,7 +4,7 @@ resource "tls_private_key" "sskeygen-execution" {
 }
 
 resource "aws_key_pair" "jenkins-key-pair" {
-  depends_on = ["tls_private_key.sskeygen-execution"]
+  depends_on = [tls_private_key.sskeygen-execution]
   key_name   = "jenkins-public"
   public_key = tls_private_key.sskeygen-execution.public_key_openssh
 }
