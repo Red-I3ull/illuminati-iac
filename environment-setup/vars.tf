@@ -20,9 +20,14 @@ variable "ami" {
   default     = "ami-0360c520857e3138f"
 }
 
+variable "public-subnet-for-jenkins" {
+  description = "The subnet where nat gateway for Jenkins will be deployed"
+  type        = string
+}
+
 data "aws_vpc" "account-vpc" {
   tags = {
-    Name = "BirdwatchingProject"
+    Name = "illuminati"
   }
 }
 

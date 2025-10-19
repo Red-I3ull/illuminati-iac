@@ -15,7 +15,7 @@ terraform {
 data "terraform_remote_state" "account-vpc" {
   backend = "s3"
   config = {
-    bucket = "terraform-state-birdwatching"
+    bucket = "terraform-state-illuminati-red-bull"
     key    = "env:/dev-01/account-setup/terraform.tfstate"
     region = "us-east-1"
   }

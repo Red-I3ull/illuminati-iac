@@ -3,3 +3,5 @@
 #   value       = module.iam.user_credentials
 #   sensitive   = true
 # }
+# uncomment this when you need to see the output
+# were commented out to avoid leaking sensitive data

@@ -3,7 +3,7 @@ provider "aws" {
   default_tags {
     tags = {
       "CreatedBy"   = "Terraform"
-      "Project"     = "Illuminati"
+      "Project"     = "illuminati"
       "Environment" = var.env
       "Repository"  = "https://github.com/Red-I3ull/illuminati-iac.git"
       "Module"      = "environment-setup"
@@ -20,11 +20,11 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "terraform-state-illuminati-red-bull"
-    key            = "environment-setup/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-locks"
-    encrypt        = true
+    bucket       = "terraform-state-illuminati-red-bull"
+    key          = "environment-setup/terraform.tfstate"
+    region       = "us-east-1"
+    use_lockfile = true
+    encrypt      = true
   }
 
 }

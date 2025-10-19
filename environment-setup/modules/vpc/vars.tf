@@ -23,21 +23,20 @@ variable "common_tags" {
   type = map(string)
   default = {
     "CreatedBy"   = "Terraform"
-    "Project"     = "Birdwatching"
+    "Project"     = "illuminati"
     "Environment" = "dev-01"
-    "Repository"  = "https://github.com/Maars-Team/BirdwatchingIac"
+    "Repository"  = "terraform-state-illuminati-red-bull"
     "Module"      = "environment-setup"
   }
+}
+
+variable "public-subnet-for-jenkins" {
+  description = "The subnet where nat gateway for Jenkins will be deployed"
+  type        = string
 }
 
 data "aws_subnet" "jenkins-subnet" {
   tags = {
     Name = "private-${var.availability-zone}-jenkins"
-  }
-}
-
-data "aws_subnet" "prometheus-subnet" {
-  tags = {
-    Name = "private-${var.availability-zone}-prometheus"
   }
 }

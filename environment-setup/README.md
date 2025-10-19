@@ -31,7 +31,7 @@ Enter your AWS Access Key ID, Secret Access Key, default region (e.g., us-east-1
 2. **Clone the Repository:**
 
 ```bash
-git clone https://github.com/Maars-Team/birdwatching-iac.git
+git clone https://github.com/Red-I3ull/illuminati-iac.git
 cd birdwatching-iac/environment-setup
 ```
 

@@ -29,7 +29,7 @@ variable "common_tags" {
     "CreatedBy"   = "Terraform"
     "Project"     = "illuminati"
     "Environment" = "dev-01"
-    "Repository"  = "https://github.com/Maars-Team/birdwatching-iac.git"
+    "Repository"  = "https://github.com/Red-I3ull/illuminati-iac.git"
     "Module"      = "account-setup"
   }
 }

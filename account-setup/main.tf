@@ -5,7 +5,7 @@ provider "aws" {
       "CreatedBy"   = "Terraform"
       "Project"     = "illuminati"
       "Environment" = var.env
-      "Repository"  = "https://github.com/Maars-Team/birdwatching-iac.git"
+      "Repository"  = "https://github.com/Red-I3ull/illuminati-iac.git"
       "Module"      = "account-setup"
     }
   }
@@ -21,7 +21,7 @@ terraform {
 
   backend "s3" {
     bucket         = "terraform-state-illuminati-red-bull"
-    key            = "account-setup/terraform.tfstate"
+    key            = "env:/dev-01/account-setup/terraform.tfstate"
     region         = "us-east-1"
     use_lockfile   = true
     encrypt        = true
