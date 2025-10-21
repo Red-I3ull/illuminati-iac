@@ -12,6 +12,11 @@ resource "aws_iam_group_policy_attachment" "admin-policy" {
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
+resource "aws_iam_group_policy_attachment" "bill-policy" {
+  group      = aws_iam_group.Administrator.name
+  policy_arn = "arn:aws:iam::aws:policy/job-function/Billing"
+}
+
 resource "aws_iam_group_membership" "admin-membership" {
   name  = "admin-membership"
   users = aws_iam_user.team[*].name

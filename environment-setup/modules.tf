@@ -6,3 +6,9 @@ module "environment-vpc" {
   region                    = var.region
   public-subnet-for-jenkins = var.public-subnet-for-jenkins
 }
+
+module "enviroment-ecr" {
+  source = "./modules/ecr/"
+  region = var.region
+  env    = var.env
+}

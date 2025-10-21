@@ -1,8 +1,8 @@
-# module "iam" {
-#   source   = "./modules/iam"
-#   username = var.username
-#   region   = var.region
-# }
+module "iam" {
+  source   = "./modules/iam"
+  username = var.username
+  region   = var.region
+}
 
 module "vpc" {
   source = "./modules/vpc"

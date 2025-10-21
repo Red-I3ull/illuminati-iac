@@ -38,6 +38,28 @@ resource "aws_iam_role_policy_attachment" "jenkins-ssm" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
 }
 
+resource "aws_iam_role_policy" "jenkins-policy-for-ecr" {
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "ecr:GetAuthorizationToken",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:PutImage",
+          "ecr:InitiateLayerUpload",
+          "ecr:UploadLayerPart",
+          "ecr:CompleteLayerUpload"
+        ],
+        "Resource" : "*"
+      }
+    ]
+  })
+  role = aws_iam_role.jenkins-role.id
+}
+
 resource "aws_iam_instance_profile" "jenkins-profile" {
   name = "jenkins-profile"
   role = aws_iam_role.jenkins-role.name
