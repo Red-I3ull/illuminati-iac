@@ -10,7 +10,6 @@ on:
   workflow_dispatch:
 
 jobs:
-
   prettier:
     name: Prettier
     runs-on: ubuntu-latest
