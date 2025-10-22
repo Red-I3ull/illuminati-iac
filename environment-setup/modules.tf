@@ -1,0 +1,14 @@
+module "environment-vpc" {
+  source                    = "./modules/vpc/"
+  vpc-id                    = data.aws_vpc.account-vpc.id
+  env                       = var.env
+  availability-zone         = var.availability-zone
+  region                    = var.region
+  public-subnet-for-jenkins = var.public-subnet-for-jenkins
+}
+
+module "enviroment-ecr" {
+  source = "./modules/ecr/"
+  region = var.region
+  env    = var.env
+}
