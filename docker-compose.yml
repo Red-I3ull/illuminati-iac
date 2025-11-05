@@ -1,0 +1,41 @@
+name: illuminati-app
+services:
+  db:
+    image: ${ECR_REGISTRY}/${MARIADB_ECR_REPO}:${MARIADB_IMAGE_TAG}
+    restart: always
+    container_name: illuminati-db-aws
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DBNAME}
+      MARIADB_USER: ${DBUSER}
+      MARIADB_PASSWORD: ${DBPASSWORD}
+    ports:
+      - '3306:3306'
+    healthcheck:
+      test: ['CMD', 'healthcheck.sh', '--connect', '--innodb_initialized']
+      start_period: 20s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  backend:
+    image: ${ECR_REGISTRY}/${BACKEND_ECR_REPO}:${BACKEND_IMAGE_TAG}
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    container_name: illuminati-backend-aws
+    ports:
+      - '8000:8000'
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DBNAME: ${DBNAME}
+      DBUSER: ${DBUSER}
+      DBPASSWORD: ${DBPASSWORD}
+      DBHOST: db
+      DBPORT: 3306
+
+  frontend:
+    image: ${ECR_REGISTRY}/${FRONTEND_ECR_REPO}:${FRONTEND_IMAGE_TAG}
+    container_name: illuminati-frontend-aws
+    ports:
+      - '8080:8080'
