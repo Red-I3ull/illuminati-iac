@@ -28,7 +28,6 @@ variable "common_tags" {
   default = {
     "CreatedBy"   = "Terraform"
     "Project"     = "illuminati"
-    "Environment" = "dev-01"
     "Repository"  = "https://github.com/Red-I3ull/illuminati-iac.git"
     "Module"      = "account-setup"
   }
@@ -36,5 +35,15 @@ variable "common_tags" {
 
 variable "availability-zone" {
   description = "Availability zone for subnets"
+  type        = string
+}
+
+variable "dev_deployment_role_arn" {
+  description = "ARN of the deployment role in dev account"
+  type        = string
+}
+
+variable "prod_deployment_role_arn" {
+  description = "ARN of the deployment role in prod account"
   type        = string
 }

@@ -10,3 +10,13 @@ output "user_credentials" {
   ]
   sensitive = true
 }
+
+output "jenkins_deployment_role_arn" {
+  description = "ARN of the role that Jenkins can assume"
+  value       = aws_iam_role.jenkins_deployment.arn
+}
+
+output "jenkins_deployment_role_name" {
+  description = "Name of the deployment role"
+  value       = aws_iam_role.jenkins_deployment.name
+}

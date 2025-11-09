@@ -11,7 +11,6 @@ provider "aws" {
   }
 }
 
-
 terraform {
   required_providers {
     aws = {
@@ -22,5 +21,3 @@ terraform {
 
 }
 
-
-data "aws_caller_identity" "current" {}

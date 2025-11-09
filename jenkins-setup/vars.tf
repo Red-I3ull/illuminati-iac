@@ -2,15 +2,14 @@ variable "region" {
   description = "The region to create the resources in"
   type        = string
 }
+variable "vpc-id" {
+  description = "The VPC ID where Jenkins will be deployed"
+  type        = string
+}
 
 variable "env" {
   description = "Specifies the target environment (e.g., dev, stage, prod) for resource provisioning"
   type        = string
-}
-
-variable "username" {
-  description = "List of users that must be created and added to the Administrators group"
-  type        = list(string)
 }
 
 variable "ami" {
@@ -18,9 +17,8 @@ variable "ami" {
   type        = string
 }
 
-
-variable "private-subnets-for-prometheus" {
-  description = "The subnet where Prometheus will be deployed"
+variable "private-subnets-for-jenkins" {
+  description = "The subnet where Jenkins will be deployed"
   type        = string
 }
 
@@ -34,7 +32,12 @@ variable "availability-zone" {
   type        = string
 }
 
-variable "jenkins_account_id" {
-  description = "AWS Account ID where Jenkins is running (stage account)"
+variable "dev_deployment_role_arn" {
+  description = "ARN of the deployment role in dev account"
+  type        = string
+}
+
+variable "prod_deployment_role_arn" {
+  description = "ARN of the deployment role in prod account"
   type        = string
 }
