@@ -78,11 +78,12 @@ resource "aws_security_group" "prometheus-sg" {
 }
 
 resource "aws_instance" "prometheus-instance" {
-  ami                    = var.ami
-  instance_type          = var.instance-type
-  subnet_id              = aws_subnet.private-subnet-prometheus.id
-  iam_instance_profile   = aws_iam_instance_profile.prometheus-profile.name
-  vpc_security_group_ids = [aws_security_group.prometheus-sg.id]
+  ami                         = var.ami
+  associate_public_ip_address = false
+  instance_type               = var.instance-type
+  subnet_id                   = aws_subnet.private-subnet-prometheus.id
+  iam_instance_profile        = aws_iam_instance_profile.prometheus-profile.name
+  vpc_security_group_ids      = [aws_security_group.prometheus-sg.id]
   tags = merge(var.common_tags, {
     Name = "prometheus-instance"
   })

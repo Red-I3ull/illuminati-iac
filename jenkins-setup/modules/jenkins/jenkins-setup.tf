@@ -88,11 +88,12 @@ resource "aws_security_group" "jenkins-security-group" {
 }
 
 resource "aws_instance" "jenkins-instance" {
-  ami                    = var.ami
-  instance_type          = "c7i-flex.large"
-  subnet_id              = aws_subnet.private-subnet-jenkins.id
-  vpc_security_group_ids = [aws_security_group.jenkins-security-group.id]
-  iam_instance_profile   = aws_iam_instance_profile.jenkins-profile.name
+  ami                         = var.ami
+  instance_type               = "c7i-flex.large"
+  associate_public_ip_address = false
+  subnet_id                   = aws_subnet.private-subnet-jenkins.id
+  vpc_security_group_ids      = [aws_security_group.jenkins-security-group.id]
+  iam_instance_profile        = aws_iam_instance_profile.jenkins-profile.name
 
   key_name = aws_key_pair.jenkins-key-pair.key_name
 
