@@ -1,5 +1,5 @@
     bucket         = "terraform-state-illuminati-red-bull-stage-01-606207925787"
-    key            = "stage/terraform-state/terraform.tfstate"
+    key            = "jenkins/terraform-state/terraform.tfstate"
     region         = "us-east-1"
     use_lockfile   = true
     encrypt        = true

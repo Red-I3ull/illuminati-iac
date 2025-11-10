@@ -1,14 +1,14 @@
 module "iam" {
-  source   = "./modules/iam"
-  username = var.username
-  region   = var.region
-  env      = var.env
+  source             = "./modules/iam"
+  username           = var.username
+  region             = var.region
+  env                = var.env
   jenkins_account_id = var.jenkins_account_id
 }
 
 module "vpc" {
-  source = "./modules/vpc"
-  region = var.region
+  source      = "./modules/vpc"
+  region      = var.region
   common_tags = {}
 }
 

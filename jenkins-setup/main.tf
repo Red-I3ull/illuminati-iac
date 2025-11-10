@@ -1,6 +1,6 @@
 provider "aws" {
   region = var.region
-    default_tags {
+  default_tags {
     tags = {
       "CreatedBy"   = "Terraform"
       "Project"     = "illuminati"
@@ -19,5 +19,8 @@ terraform {
     }
   }
 
+  backend "s3" {
+    # Usage: terraform init -backend-config=backends/dev.tfbackend
+  }
 }
 

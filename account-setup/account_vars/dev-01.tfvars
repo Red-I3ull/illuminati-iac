@@ -1,9 +1,9 @@
-env               = "dev-01"
-region            = "us-east-1"
-availability-zone = "us-east-1a"
-jenkins_account_id = ""
+env                = "dev-01"
+region             = "us-east-1"
+availability-zone  = "us-east-1a"
+jenkins_account_id = "606207925787"
 username = [
-  "larysa2",
+  "larysa",
   "andrii",
   "vladyslav"
 ]

@@ -11,11 +11,11 @@ resource "aws_key_pair" "jenkins-key-pair" {
 
 
 data "aws_vpc" "vpc-id" {
- id = var.vpc-id
+  id = var.vpc-id
 }
 
 resource "aws_subnet" "private-subnet-jenkins" {
-  vpc_id            = data.aws_vpc.vpc-id
+  vpc_id            = data.aws_vpc.vpc-id.id
   cidr_block        = var.private-subnets-for-jenkins
   availability_zone = var.availability-zone
   tags = merge(var.common_tags, {
@@ -44,9 +44,9 @@ resource "aws_iam_role_policy_attachment" "jenkins-ssm" {
 }
 
 resource "aws_iam_role_policy" "jenkins-policy-for-deployment" {
-  name = "jenkins-policy-for-deployment"
-  policy = file("jenkins-policy.json")
-  role = aws_iam_role.jenkins-role.id
+  name   = "jenkins-policy-for-deployment"
+  policy = file("./modules/jenkins/jenkins-policy.json")
+  role   = aws_iam_role.jenkins-role.id
 }
 
 resource "aws_iam_role_policy" "jenkins_assume_roles" {
@@ -76,7 +76,7 @@ resource "aws_iam_instance_profile" "jenkins-profile" {
 resource "aws_security_group" "jenkins-security-group" {
   name = "allow-all"
 
-  vpc_id = data.aws_vpc.vpc-id
+  vpc_id = data.aws_vpc.vpc-id.id
 
   egress {
     from_port   = 0

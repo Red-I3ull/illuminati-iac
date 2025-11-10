@@ -7,4 +7,6 @@ module "Jenkins" {
   region                      = var.region
   ami                         = var.ami
   availability-zone           = var.availability-zone
+  dev_deployment_role_arn     = var.dev_deployment_role_arn
+  prod_deployment_role_arn    = var.prod_deployment_role_arn
 }

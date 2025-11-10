@@ -26,10 +26,10 @@ variable "ami" {
 variable "common_tags" {
   type = map(string)
   default = {
-    "CreatedBy"   = "Terraform"
-    "Project"     = "Birdwatching"
-    "Repository"  = "https://github.com/Maars-Team/BirdwatchingIac"
-    "Module"      = "account-setup"
+    "CreatedBy"  = "Terraform"
+    "Project"    = "Birdwatching"
+    "Repository" = "https://github.com/Maars-Team/BirdwatchingIac"
+    "Module"     = "account-setup"
   }
 }
 

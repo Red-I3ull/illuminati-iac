@@ -9,7 +9,7 @@ output "iam_user_credentials" {
 
 output "vpc_id" {
   description = "VPC id"
-  value = module.vpc.vpc-id
+  value       = module.vpc.vpc-id
 }
 
 output "jenkins_deployment_role_arn" {

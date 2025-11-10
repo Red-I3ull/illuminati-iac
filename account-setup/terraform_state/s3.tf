@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "terraform-state" {
     prevent_destroy = true
   }
 
-    tags = {
+  tags = {
     Name        = "Terraform State Bucket"
     Environment = "${var.env}"
     ManagedBy   = "Terraform"
