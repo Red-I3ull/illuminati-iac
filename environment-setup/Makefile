@@ -4,10 +4,10 @@ init:
 	terraform init -backend-config="./backends/${ENV}.tfbackend" -reconfigure
 
 plan: init
-	terraform plan -var-file="./account_vars/${ENV}.tfvars"
+	terraform plan -var-file="./workspace_vars/${ENV}.tfvars"
 
 apply: init
-	terraform apply -var-file="./account_vars/${ENV}.tfvars" -auto-approve
+	terraform apply -var-file="./workspace_vars/${ENV}.tfvars" -auto-approve
 
 destroy: init
-	terraform destroy -var-file="./account_vars/${ENV}.tfvars" -auto-approve
+	terraform destroy -var-file="./workspace_vars/${ENV}.tfvars" -auto-approve
