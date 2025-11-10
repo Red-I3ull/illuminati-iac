@@ -20,21 +20,6 @@ terraform {
   }
 
   backend "s3" {
-    bucket       = "terraform-state-illuminati-red-bull"
-    key          = "environment-setup/terraform.tfstate"
-    region       = "us-east-1"
-    use_lockfile = true
-    encrypt      = true
   }
 
-}
-
-
-data "terraform_remote_state" "account-vpc" {
-  backend = "s3"
-  config = {
-    bucket = "terraform-state-illuminati-red-bull"
-    key    = "env:/dev-01/account-setup/terraform.tfstate"
-    region = "us-east-1"
-  }
 }
