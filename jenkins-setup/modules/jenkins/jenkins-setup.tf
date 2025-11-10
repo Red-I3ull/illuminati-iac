@@ -104,6 +104,7 @@ resource "aws_instance" "jenkins-instance" {
 }
 
 resource "aws_ebs_volume" "jenkins-volume" {
+  encrypted         = true
   availability_zone = var.availability-zone
   size              = 1
   type              = "gp3"
