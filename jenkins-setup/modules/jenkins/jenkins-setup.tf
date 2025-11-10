@@ -9,8 +9,13 @@ resource "aws_key_pair" "jenkins-key-pair" {
   public_key = tls_private_key.sskeygen-execution.public_key_openssh
 }
 
+
+data "aws_vpc" "vpc-id" {
+  id = var.vpc-id
+}
+
 resource "aws_subnet" "private-subnet-jenkins" {
-  vpc_id            = var.vpc-id
+  vpc_id            = data.aws_vpc.vpc-id.id
   cidr_block        = var.private-subnets-for-jenkins
   availability_zone = var.availability-zone
   tags = merge(var.common_tags, {
@@ -38,26 +43,29 @@ resource "aws_iam_role_policy_attachment" "jenkins-ssm" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
 }
 
-resource "aws_iam_role_policy" "jenkins-policy-for-ecr" {
+resource "aws_iam_role_policy" "jenkins-policy-for-deployment" {
+  name   = "jenkins-policy-for-deployment"
+  policy = file("./modules/jenkins/jenkins-policy.json")
+  role   = aws_iam_role.jenkins-role.id
+}
+
+resource "aws_iam_role_policy" "jenkins_assume_roles" {
+  name = "jenkins-assume-roles-policy"
+  role = aws_iam_role.jenkins-role.id
+
   policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
+    Version = "2012-10-17"
+    Statement = [
       {
-        "Effect" : "Allow",
-        "Action" : [
-          "ecr:GetAuthorizationToken",
-          "ecr:BatchCheckLayerAvailability",
-          "ecr:GetDownloadUrlForLayer",
-          "ecr:PutImage",
-          "ecr:InitiateLayerUpload",
-          "ecr:UploadLayerPart",
-          "ecr:CompleteLayerUpload"
-        ],
-        "Resource" : "*"
+        Effect = "Allow"
+        Action = "sts:AssumeRole"
+        Resource = [
+          var.dev_deployment_role_arn,
+          var.prod_deployment_role_arn
+        ]
       }
     ]
   })
-  role = aws_iam_role.jenkins-role.id
 }
 
 resource "aws_iam_instance_profile" "jenkins-profile" {
@@ -68,7 +76,7 @@ resource "aws_iam_instance_profile" "jenkins-profile" {
 resource "aws_security_group" "jenkins-security-group" {
   name = "allow-all"
 
-  vpc_id = var.vpc-id
+  vpc_id = data.aws_vpc.vpc-id.id
 
   egress {
     from_port   = 0
@@ -80,11 +88,12 @@ resource "aws_security_group" "jenkins-security-group" {
 }
 
 resource "aws_instance" "jenkins-instance" {
-  ami                    = var.ami
-  instance_type          = "c7i-flex.large"
-  subnet_id              = aws_subnet.private-subnet-jenkins.id
-  vpc_security_group_ids = [aws_security_group.jenkins-security-group.id]
-  iam_instance_profile   = aws_iam_instance_profile.jenkins-profile.name
+  ami                         = var.ami
+  instance_type               = "c7i-flex.large"
+  associate_public_ip_address = false
+  subnet_id                   = aws_subnet.private-subnet-jenkins.id
+  vpc_security_group_ids      = [aws_security_group.jenkins-security-group.id]
+  iam_instance_profile        = aws_iam_instance_profile.jenkins-profile.name
 
   key_name = aws_key_pair.jenkins-key-pair.key_name
 
@@ -95,6 +104,7 @@ resource "aws_instance" "jenkins-instance" {
 }
 
 resource "aws_ebs_volume" "jenkins-volume" {
+  encrypted         = true
   availability_zone = var.availability-zone
   size              = 1
   type              = "gp3"

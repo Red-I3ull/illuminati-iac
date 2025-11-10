@@ -1,7 +1,13 @@
 resource "aws_s3_bucket" "terraform-state" {
-  bucket = "terraform-state-illuminati-red-bull"
+  bucket = "terraform-state-illuminati-red-bull-${var.env}-${data.aws_caller_identity.current.account_id}"
   lifecycle {
     prevent_destroy = true
+  }
+
+  tags = {
+    Name        = "Terraform State Bucket"
+    Environment = "${var.env}"
+    ManagedBy   = "Terraform"
   }
 }
 

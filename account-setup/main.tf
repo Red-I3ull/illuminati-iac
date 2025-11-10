@@ -20,10 +20,6 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "terraform-state-illuminati-red-bull"
-    key            = "env:/dev-01/account-setup/terraform.tfstate"
-    region         = "us-east-1"
-    use_lockfile   = true
-    encrypt        = true
+    # Usage: terraform init -backend-config=backends/dev.tfbackend
   }
 }

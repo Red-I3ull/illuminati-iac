@@ -11,7 +11,6 @@ provider "aws" {
   }
 }
 
-
 terraform {
   required_providers {
     aws = {
@@ -20,7 +19,8 @@ terraform {
     }
   }
 
+  backend "s3" {
+    # Usage: terraform init -backend-config=backends/dev.tfbackend
+  }
 }
 
-
-data "aws_caller_identity" "current" {}

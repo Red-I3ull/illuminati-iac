@@ -3,8 +3,8 @@ variable "vpc-id" {
   type        = string
 }
 
-variable "private-subnets-for-jenkins" {
-  description = "The subnet where Jenkins will be deployed"
+variable "private-subnets-for-prometheus" {
+  description = "The subnet where Prometheus will be deployed"
   type        = string
 }
 
@@ -26,12 +26,16 @@ variable "ami" {
 variable "common_tags" {
   type = map(string)
   default = {
-    "CreatedBy"   = "Terraform"
-    "Project"     = "illuminati"
-    "Environment" = "dev-01"
-    "Repository"  = "https://github.com/Red-I3ull/illuminati-iac.git"
-    "Module"      = "account-setup"
+    "CreatedBy"  = "Terraform"
+    "Project"    = "Birdwatching"
+    "Repository" = "https://github.com/Maars-Team/BirdwatchingIac"
+    "Module"     = "account-setup"
   }
+}
+
+variable "instance-type" {
+  description = "default instance type for our project"
+  type        = string
 }
 
 variable "availability-zone" {
