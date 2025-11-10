@@ -19,6 +19,12 @@ resource "aws_subnet" "public-subnet-for-jenkins" {
 
 resource "aws_route_table" "public-route-table" {
   vpc_id = var.vpc-id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
   tags = merge(var.common_tags, {
     Name    = "public-route-table-${var.env}"
     Project = "illuminati"
@@ -33,6 +39,26 @@ resource "aws_route" "public-route" {
 
 resource "aws_route_table_association" "public-subnet-association" {
   subnet_id      = aws_subnet.public-subnet-for-jenkins.id
+  route_table_id = aws_route_table.public-route-table.id
+}
+
+resource "aws_route_table_association" "private-us-east-1a" {
+  subnet_id      = aws_subnet.private-us-east-1a.id
+  route_table_id = aws_route_table.private-route-table.id
+}
+
+resource "aws_route_table_association" "private-us-east-1b" {
+  subnet_id      = aws_subnet.private-us-east-1b.id
+  route_table_id = aws_route_table.private-route-table.id
+}
+
+resource "aws_route_table_association" "public-us-east-1a" {
+  subnet_id      = aws_subnet.public-us-east-1a.id
+  route_table_id = aws_route_table.public-route-table.id
+}
+
+resource "aws_route_table_association" "public-us-east-1b" {
+  subnet_id      = aws_subnet.public-us-east-1b.id
   route_table_id = aws_route_table.public-route-table.id
 }
 

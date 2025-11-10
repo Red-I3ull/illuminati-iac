@@ -35,6 +35,26 @@ variable "public-subnet-for-jenkins" {
   type        = string
 }
 
+variable "private-subnet-cidrs" {
+  description = "CIDR blocks for private subnets"
+  type        = list(string)
+}
+
+variable "public-subnet-cidrs" {
+  description = "CIDR blocks for public subnets"
+  type        = list(string)
+}
+
+variable "private-subnet-azs" {
+  description = "Availability zones for private subnets"
+  type        = list(string)
+}
+
+variable "public-subnet-azs" {
+  description = "Availability zones for public subnets"
+  type        = list(string)
+}
+
 data "aws_subnet" "jenkins-subnet" {
   tags = {
     Name = "private-${var.availability-zone}-jenkins"
