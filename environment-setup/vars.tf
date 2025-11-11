@@ -25,6 +25,36 @@ variable "public-subnet-for-jenkins" {
   type        = string
 }
 
+variable "cluster-name" {
+  description = "Name of the EKS cluster"
+  type        = string
+}
+
+variable "kubernetes-version" {
+  description = "Version of Kubernetes to use for the EKS cluster"
+  type        = string
+}
+
+variable "private-subnet-cidrs" {
+  description = "CIDR blocks for private subnets"
+  type        = list(string)
+}
+
+variable "public-subnet-cidrs" {
+  description = "CIDR blocks for public subnets"
+  type        = list(string)
+}
+
+variable "private-subnet-azs" {
+  description = "Availability zones for private subnets"
+  type        = list(string)
+}
+
+variable "public-subnet-azs" {
+  description = "Availability zones for public subnets"
+  type        = list(string)
+}
+
 data "aws_vpc" "account-vpc" {
   tags = {
     Name = "illuminati"
