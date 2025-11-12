@@ -34,3 +34,8 @@ data "aws_vpc" "account-vpc" {
     Name = "illuminati"
   }
 }
+
+variable "subnet_ids_public" {
+  description = "List of publick subnet IDs for EKS cluster"
+  type        = list(string)
+}

@@ -9,6 +9,9 @@ locals {
     backend = {
       name = "illuminati-django-backend"
     }
+    helm = {
+      name = "illuminati-helm-charts"
+    }
   }
 }
 

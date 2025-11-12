@@ -7,5 +7,6 @@ private-subnets-for-jenkins = "10.0.2.0/24"
 instance-type               = "t3.micro"
 ami                         = "ami-0341d95f75f311023"
 
-dev_deployment_role_arn  = "arn:aws:iam::455185968385:role/dev-01-jenkins-deployment-role"
-prod_deployment_role_arn = "arn:aws:iam::997221415658:role/prod-01-jenkins-deployment-role"
+dev_deployment_role_arn   = "arn:aws:iam::997221415658:role/dev-01-jenkins-deployment-role"
+prod_deployment_role_arn  = "arn:aws:iam::145065858657:role/prod-01-jenkins-deployment-role"
+stage_deployment_role_arn = "arn:aws:iam::606207925787:role/stage-01-jenkins-deployment-role"

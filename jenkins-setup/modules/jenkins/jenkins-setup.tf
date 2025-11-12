@@ -61,7 +61,8 @@ resource "aws_iam_role_policy" "jenkins_assume_roles" {
         Action = "sts:AssumeRole"
         Resource = [
           var.dev_deployment_role_arn,
-          var.prod_deployment_role_arn
+          var.prod_deployment_role_arn,
+          var.stage_deployment_role_arn
         ]
       }
     ]
@@ -96,6 +97,8 @@ resource "aws_instance" "jenkins-instance" {
   iam_instance_profile        = aws_iam_instance_profile.jenkins-profile.name
 
   key_name = aws_key_pair.jenkins-key-pair.key_name
+
+  user_data = file("./modules/jenkins/install_jenkins.sh")
 
   tags = merge(var.common_tags, {
     Name = "jenkins-instance"

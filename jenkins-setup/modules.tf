@@ -9,4 +9,5 @@ module "Jenkins" {
   availability-zone           = var.availability-zone
   dev_deployment_role_arn     = var.dev_deployment_role_arn
   prod_deployment_role_arn    = var.prod_deployment_role_arn
+  stage_deployment_role_arn   = var.stage_deployment_role_arn
 }
