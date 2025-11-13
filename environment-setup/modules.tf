@@ -23,6 +23,7 @@ module "environment-eks" {
   env                = var.env
   cluster-name       = var.cluster-name
   kubernetes-version = var.kubernetes-version
+  subnet_ids_public  = [module.environment-vpc.public-us-east-1a]
   subnet_ids = [
     module.environment-vpc.private-us-east-1a,
     module.environment-vpc.private-us-east-1b,

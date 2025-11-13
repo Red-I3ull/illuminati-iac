@@ -47,3 +47,7 @@ variable "prod_deployment_role_arn" {
   description = "ARN of the deployment role in prod account"
   type        = string
 }
+variable "stage_deployment_role_arn" {
+  description = "ARN of the deployment role in stage account"
+  type        = string
+}

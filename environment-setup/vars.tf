@@ -60,4 +60,3 @@ data "aws_vpc" "account-vpc" {
     Name = "illuminati"
   }
 }
-

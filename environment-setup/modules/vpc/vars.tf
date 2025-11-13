@@ -22,11 +22,10 @@ variable "availability-zone" {
 variable "common_tags" {
   type = map(string)
   default = {
-    "CreatedBy"   = "Terraform"
-    "Project"     = "illuminati"
-    "Environment" = "dev-01"
-    "Repository"  = "terraform-state-illuminati-red-bull"
-    "Module"      = "environment-setup"
+    "CreatedBy"  = "Terraform"
+    "Project"    = "illuminati"
+    "Repository" = "terraform-state-illuminati-red-bull"
+    "Module"     = "environment-setup"
   }
 }
 
