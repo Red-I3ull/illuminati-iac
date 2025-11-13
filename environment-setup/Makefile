@@ -1,7 +1,7 @@
 .PHONY: init plan apply destroy bootstrap
 ENV=dev-01
 init:
-	terraform init -backend-config="./backend/${ENV}.tfbackend" -reconfigure
+	terraform init -backend-config="./backends/${ENV}.tfbackend" -reconfigure
 
 plan: init
 	terraform plan -var-file="./workspace_vars/${ENV}.tfvars"
