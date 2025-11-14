@@ -17,5 +17,6 @@ module "argocd-deployment" {
   argocd-version = var.argocd-chart-version
   region         = var.region
 
-  depends_on     = [module.eks-node-for-argocd-consul]
+  depends_on    = [module.eks-node-for-argocd-consul]
+  app-namespace = var.app-namespace
 }

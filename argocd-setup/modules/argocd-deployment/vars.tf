@@ -17,3 +17,8 @@ variable "argocd-version" {
   description = "Version of ArgoCD to deploy"
   type        = string
 }
+
+variable "app-namespace" {
+  description = "The Kubernetes namespace to deploy the app into"
+  type        = string
+}

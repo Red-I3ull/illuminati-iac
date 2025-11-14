@@ -1,6 +1,10 @@
 resource "kubernetes_namespace" "argocd" {
   metadata {
-    name = "argocd"
+    name = var.app-namespace
+    labels = {
+      name        = var.app-namespace
+      environment = var.env
+    }
   }
 }
 
@@ -17,9 +21,10 @@ resource "helm_release" "argocd" {
   }
 
   # Wait for all resources to be ready
-  wait          = true
-  wait_for_jobs = true
-  timeout       = 600
+  wait            = true
+  wait_for_jobs   = true
+  cleanup_on_fail = true
+  timeout         = 600
 
   depends_on = [kubernetes_namespace.argocd]
 }
