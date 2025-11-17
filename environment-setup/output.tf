@@ -22,3 +22,14 @@ output "illuminati-eks-nodes-id" {
   description = "EKS node id"
   value       = module.environment-eks.illuminati-eks-nodes-id
 }
+
+output "db_connection_info" {
+  description = "Database connection info "
+  value       = module.rds_mariadb.db_connection_info
+  sensitive   = true
+}
+
+output "secrets_manager_arn" {
+  description = "ARN of the Secrets Manager secret containing the password"
+  value       = module.rds_mariadb.secrets_manager_arn
+}
