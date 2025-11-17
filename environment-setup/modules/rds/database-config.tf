@@ -57,13 +57,15 @@ resource "aws_security_group" "rds_sg" {
 
 
 resource "aws_db_instance" "mariadb" {
-  engine               = "mariadb"
-  engine_version       = "10.6"
-  instance_class       = "db.t3.micro"
-  allocated_storage    = 20
-  region               = var.region
-  availability_zone    = var.availability-zone
-  db_subnet_group_name = aws_db_subnet_group.db_subnets.name
+  engine                  = "mariadb"
+  engine_version          = "10.6"
+  instance_class          = "db.t3.micro"
+  allocated_storage       = 20
+  region                  = var.region
+  availability_zone       = var.availability-zone
+  db_subnet_group_name    = aws_db_subnet_group.db_subnets.name
+  storage_encrypted       = true
+  backup_retention_period = 0
 
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
 

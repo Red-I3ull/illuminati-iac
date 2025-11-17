@@ -10,6 +10,7 @@ metadata:
 spec:
   template:
     spec:
+      automountServiceAccountToken: false
       containers:
         - name: db-migrate
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
