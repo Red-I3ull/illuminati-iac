@@ -10,17 +10,8 @@ module "helm_releases" {
 }
 
 
-module "external_secrets_role" {
-  source           = "./modules/backend-service-account"
-  env              = var.env
-  app_namespace    = var.app_namespace
-  eks_cluster_name = var.eks_cluster_name
-}
-
-
 module "backend_release" {
   source                  = "./modules/backend-release"
   app_namespace           = var.app_namespace
   illuminati-eks-nodes-id = var.illuminati-eks-nodes-id
-
 }

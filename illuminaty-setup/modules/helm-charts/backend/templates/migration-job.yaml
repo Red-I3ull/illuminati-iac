@@ -10,7 +10,6 @@ metadata:
 spec:
   template:
     spec:
-      serviceAccountName: {{ .Values.serviceAccountName }}
       containers:
         - name: db-migrate
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

@@ -19,7 +19,6 @@ spec:
         release: {{ .Release.Name }}
         version: {{ .Chart.AppVersion }}
     spec:
-      serviceAccountName: {{ .Values.serviceAccountName }}
       containers:
         - name: backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -54,3 +53,6 @@ spec:
             httpGet:
               path: /health/
               port: {{ .Values.containerPort }}
+              httpHeaders:
+                - name: Host
+                  value: localhost
