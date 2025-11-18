@@ -8,3 +8,6 @@ private-subnet-cidrs      = ["10.0.6.0/24", "10.0.7.0/24"]
 public-subnet-cidrs       = ["10.0.8.0/24", "10.0.9.0/24"]
 private-subnet-azs        = ["us-east-1a", "us-east-1b"]
 public-subnet-azs         = ["us-east-1a", "us-east-1b"]
+
+db_username_base64 = "aWxsdW1pbmF0eQ=="
+db_name_base64     = "aWxsdW1pbmF0eQ=="

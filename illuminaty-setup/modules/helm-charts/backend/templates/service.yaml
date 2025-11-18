@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ .Release.Name }}
   labels:
-    app: frontend
+    app: backend
     release: {{ .Release.Name }}
 spec:
   type: {{ .Values.service.type }}
@@ -13,5 +13,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: frontend
-    release: {{ .Release.Name }}
+    app: backend

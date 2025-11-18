@@ -60,3 +60,15 @@ data "aws_vpc" "account-vpc" {
     Name = "illuminati"
   }
 }
+
+
+variable "db_username_base64" {
+  description = "Base64 encoded database username"
+  type        = string
+  sensitive   = true
+}
+
+variable "db_name_base64" {
+  description = "Base64 encoded database name"
+  type        = string
+}

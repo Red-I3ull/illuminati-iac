@@ -23,11 +23,26 @@ module "environment-eks" {
   env                = var.env
   cluster-name       = var.cluster-name
   kubernetes-version = var.kubernetes-version
-  subnet_ids_public  = [module.environment-vpc.public-us-east-1a]
+  subnet_ids_private = [
+    module.environment-vpc.private-us-east-1a,
+  module.environment-vpc.private-us-east-1b, ]
   subnet_ids = [
     module.environment-vpc.private-us-east-1a,
     module.environment-vpc.private-us-east-1b,
     module.environment-vpc.public-us-east-1a,
     module.environment-vpc.public-us-east-1b
   ]
+}
+
+module "rds_mariadb" {
+  source             = "./modules/rds"
+  db_name_base64     = var.db_name_base64
+  db_username_base64 = var.db_username_base64
+  env                = var.env
+  region             = var.region
+  subnet_ids_private = [
+    module.environment-vpc.private-us-east-1a,
+  module.environment-vpc.private-us-east-1b, ]
+  private-subnet-cidrs = var.private-subnet-cidrs
+  vpc-id               = data.aws_vpc.account-vpc.id
 }

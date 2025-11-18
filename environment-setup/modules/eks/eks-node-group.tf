@@ -38,7 +38,7 @@ resource "aws_eks_node_group" "illuminati-eks-nodes" {
   cluster_name    = aws_eks_cluster.illuminati-eks.name
   node_group_name = "illuminati-node-group-${var.env}"
   node_role_arn   = aws_iam_role.illuminati-eks-node-role.arn
-  subnet_ids      = var.subnet_ids_public
+  subnet_ids      = var.subnet_ids_private
 
   instance_types = ["t3.small"]
   scaling_config {
