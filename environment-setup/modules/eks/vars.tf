@@ -29,13 +29,7 @@ variable "kubernetes-version" {
   type        = string
 }
 
-data "aws_vpc" "account-vpc" {
-  tags = {
-    Name = "illuminati"
-  }
-}
-
-variable "subnet_ids_private" {
-  description = "List of _private subnet IDs for EKS cluster"
+variable "subnet_ids_public" {
+  description = "List of publick subnet IDs for EKS cluster"
   type        = list(string)
 }
