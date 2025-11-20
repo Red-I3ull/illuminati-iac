@@ -37,3 +37,6 @@ override.tf.json
 terraform.rc
 .idea/
 .env
+
+.prod-01.tfbackend
+.tfvars
