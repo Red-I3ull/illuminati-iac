@@ -55,6 +55,17 @@ variable "public-subnet-azs" {
   type        = list(string)
 }
 
+variable "private-subnets-for-consul" {
+  description = "CIDR block for consul-subnet"
+  type        = string
+}
+
+variable "consul_ami" {
+  description = "AMI ID for Consul instances"
+  type        = string
+  default     = "ami-0bf2258f1703423f7"
+}
+
 data "aws_vpc" "account-vpc" {
   tags = {
     Name = "illuminati"

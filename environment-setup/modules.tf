@@ -30,3 +30,14 @@ module "environment-eks" {
     module.environment-vpc.public-us-east-1b
   ]
 }
+
+module "consul" {
+  source                     = "./modules/consul/"
+  private-subnets-for-consul = var.private-subnets-for-consul
+  availability-zone          = var.availability-zone
+  env                        = var.env
+  ami                        = var.consul_ami
+  region                     = var.region
+  private-route-id           = module.environment-vpc.private-route-table-id
+  vpc-id                     = data.aws_vpc.account-vpc.id
+}

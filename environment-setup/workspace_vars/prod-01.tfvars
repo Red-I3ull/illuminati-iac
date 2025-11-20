@@ -1,0 +1,11 @@
+env                       = "prod-01"
+region                    = "us-east-1"
+availability-zone         = "us-east-1a"
+public-subnet-for-jenkins = "10.0.5.0/24"
+private-subnets-for-consul  = "10.0.32.0/24"
+cluster-name              = "prod-01-illuminti-eks-cluster"
+kubernetes-version        = "1.33"
+private-subnet-cidrs      = ["10.0.6.0/24", "10.0.7.0/24"]
+public-subnet-cidrs       = ["10.0.8.0/24", "10.0.9.0/24"]
+private-subnet-azs        = ["us-east-1a", "us-east-1b"]
+public-subnet-azs         = ["us-east-1a", "us-east-1b"]

@@ -51,3 +51,4 @@ resource "aws_subnet" "public-us-east-1b" {
     "kubernetes.io/cluster/demo" = "owned"
   }
 }
+
