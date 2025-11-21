@@ -9,20 +9,20 @@ resource "kubernetes_namespace" "app_namespace" {
   }
 }
 
-# resource "helm_release" "frontend" {
-#   name      = "release-frontend"
-#   namespace = kubernetes_namespace.app_namespace.metadata[0].name
-#   chart     = "${path.module}/../helm-charts/frontend"
-#
-#   depends_on = [
-#     kubernetes_namespace.app_namespace,
-#     var.illuminati-eks-nodes-id
-#   ]
-#   values = [
-#     file("./modules/helm-charts/frontend/values-stage-01.yaml")
-#   ]
-#   atomic          = true
-#   cleanup_on_fail = true
-#   timeout         = 600
-#   wait            = true
-# }
+resource "helm_release" "frontend" {
+  name      = "release-frontend"
+  namespace = kubernetes_namespace.app_namespace.metadata[0].name
+  chart     = "${path.module}/../helm-charts/frontend"
+
+  depends_on = [
+    kubernetes_namespace.app_namespace,
+    var.illuminati-eks-nodes-id
+  ]
+  values = [
+    file("./modules/helm-charts/frontend/values-stage-01.yaml")
+  ]
+  atomic          = true
+  cleanup_on_fail = true
+  timeout         = 600
+  wait            = true
+}
