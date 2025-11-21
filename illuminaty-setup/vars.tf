@@ -42,3 +42,8 @@ variable "illuminati-eks-nodes-id" {
   description = "EKS node id"
   type        = string
 }
+
+variable "domain-name" {
+  description = "Domain name for illuminati app"
+  type        = string
+}

@@ -46,3 +46,8 @@ module "rds_mariadb" {
   private-subnet-cidrs = var.private-subnet-cidrs
   vpc-id               = data.aws_vpc.account-vpc.id
 }
+
+module "dns" {
+  source      = "./modules/dns"
+  domain-name = var.domain-name
+}

@@ -72,3 +72,8 @@ variable "db_name_base64" {
   description = "Base64 encoded database name"
   type        = string
 }
+
+variable "domain-name" {
+  description = "Domain name for illuminati app"
+  type        = string
+}
