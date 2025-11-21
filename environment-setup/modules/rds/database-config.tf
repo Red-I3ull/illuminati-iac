@@ -64,8 +64,8 @@ resource "aws_db_instance" "mariadb" {
   region               = var.region
   availability_zone    = var.availability-zone
   db_subnet_group_name = aws_db_subnet_group.db_subnets.name
-  #  storage_encrypted       = true
-  #  backup_retention_period = 7
+  storage_encrypted       = true
+  backup_retention_period = 7
 
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
 
