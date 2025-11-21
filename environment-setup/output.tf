@@ -33,3 +33,7 @@ output "secrets_manager_arn" {
   description = "ARN of the Secrets Manager secret containing the password"
   value       = module.rds_mariadb.secrets_manager_arn
 }
+
+output "acm_certificate_arn" {
+  value = module.dns.acm_certificate_arn
+}

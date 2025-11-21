@@ -40,7 +40,7 @@ resource "aws_eks_node_group" "illuminati-eks-nodes" {
   node_role_arn   = aws_iam_role.illuminati-eks-node-role.arn
   subnet_ids      = var.subnet_ids_private
 
-  instance_types = ["t3.small"]
+  instance_types = ["c7i-flex.large"]
   scaling_config {
     desired_size = 1
     max_size     = 4

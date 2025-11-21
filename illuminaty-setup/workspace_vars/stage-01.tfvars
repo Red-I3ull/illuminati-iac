@@ -9,3 +9,5 @@ frontend_image_tag        = "v-1"
 frontend_replicas         = 1
 app_namespace             = "app-namespace"
 illuminati-eks-nodes-id   = "illuminati-eks:illuminati-node-group-stage-01"
+
+domain-name = "buymeadoor.pp.ua"

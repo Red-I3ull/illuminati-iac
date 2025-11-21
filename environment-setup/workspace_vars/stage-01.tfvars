@@ -11,3 +11,5 @@ public-subnet-azs         = ["us-east-1a", "us-east-1b"]
 
 db_username_base64 = "aWxsdW1pbmF0eQ=="
 db_name_base64     = "aWxsdW1pbmF0eQ=="
+
+domain-name = "buymeadoor.pp.ua"

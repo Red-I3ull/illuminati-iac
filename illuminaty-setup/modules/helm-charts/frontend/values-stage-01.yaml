@@ -1,14 +1,17 @@
-replicaCount: ${frontend_replicas}
+replicaCount: 1
 
 image:
-  repository: ${frontend_image_repository}
+  repository: "606207925787.dkr.ecr.us-east-1.amazonaws.com/illuminati-react-frontend"
   pullPolicy: Always
-  tag: "${frontend_image_tag}"
+  tag: "v-1"
 
 
 podAnnotations: {}
 
+host: "stage.buymeadoor.pp.ua"
+
 service:
+  name: frontend
   type: ClusterIP
   port: 8080
   targetPort: 8080
@@ -24,7 +27,7 @@ resources:
     memory: 128Mi
 
 autoscaling:
-  enabled: true
+  enabled: false
   minReplicas: 1
   maxReplicas: 2
   targetCPUUtilizationPercentage: 70
