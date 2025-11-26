@@ -13,6 +13,11 @@ module "external-dns" {
   region           = var.region
 }
 
+
+module "monitoring" {
+  source = "./modules/monitoring"
+}
+
 module "helm_releases" {
   source                    = "./modules/frontend-release"
   env                       = var.env
@@ -21,7 +26,7 @@ module "helm_releases" {
   frontend_image_tag        = var.frontend_image_tag
   frontend_replicas         = var.frontend_replicas
   illuminati-eks-nodes-id   = var.illuminati-eks-nodes-id
-  depends_on                = [module.aws-lb-controller, module.external-dns]
+  depends_on                = [module.aws-lb-controller, module.external-dns, module.monitoring]
 }
 
 

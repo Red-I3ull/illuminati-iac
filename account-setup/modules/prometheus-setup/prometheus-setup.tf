@@ -87,4 +87,6 @@ resource "aws_instance" "prometheus-instance" {
   tags = merge(var.common_tags, {
     Name = "prometheus-instance"
   })
+
+  user_data = file("./modules/prometheus-setup/install-grafana.sh")
 }

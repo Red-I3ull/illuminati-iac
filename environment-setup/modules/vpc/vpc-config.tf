@@ -99,10 +99,25 @@ resource "aws_route" "private-route-to-nat" {
   nat_gateway_id         = aws_nat_gateway.nat-for-jenkins-subnet.id
 }
 
-# resource "aws_route_table_association" "private-subnet-association-for-jenkins" {
-#   for_each = toset([
-#     data.aws_subnet.jenkins-subnet.id,
-#   ])
-#   subnet_id      = each.value
-#   route_table_id = aws_route_table.private-route-table.id
-# }
+resource "aws_route_table_association" "private-subnet-association-for-jenkins" {
+  for_each = toset([
+    data.aws_subnet.jenkins-subnet.id,
+  ])
+  subnet_id      = each.value
+  route_table_id = aws_route_table.private-route-table.id
+}
+
+
+data "aws_subnet" "prometheus-subnet" {
+  tags = {
+    Name = "private-${var.availability-zone}-prometheus"
+  }
+}
+
+resource "aws_route_table_association" "private-subnet-association-for-prometheus" {
+  for_each = toset([
+    data.aws_subnet.prometheus-subnet.id
+  ])
+  subnet_id      = each.value
+  route_table_id = aws_route_table.private-route-table.id
+}
