@@ -10,6 +10,9 @@ resource "helm_release" "backend" {
   namespace = var.app_namespace
   chart     = "${path.module}/../helm-charts/backend"
 
+  # values = [
+  #   file("./modules/helm-charts/backend/values-stage-01.yaml")
+  # ]
 
   depends_on = [
     data.kubernetes_namespace.app_namespace,

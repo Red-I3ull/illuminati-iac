@@ -6,6 +6,9 @@ metadata:
     app: frontend
     release: {{ .Release.Name }}
     version: {{ .Chart.AppVersion }}
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "{{ .Values.containerPort }}"
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
