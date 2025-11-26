@@ -1,4 +1,3 @@
-
 deploymentMode: SingleBinary
 
 gateway:
@@ -43,7 +42,7 @@ chunksCache:
   enabled: false
 
 resultsCache:
-  enabled: false  
+  enabled: false
 
 readinessProbe:
   initialDelaySeconds: 60

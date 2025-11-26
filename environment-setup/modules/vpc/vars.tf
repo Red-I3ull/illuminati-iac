@@ -54,8 +54,8 @@ variable "public-subnet-azs" {
   type        = list(string)
 }
 
-data "aws_subnet" "jenkins-subnet" {
-  tags = {
-    Name = "private-${var.availability-zone}-jenkins"
-  }
-}
+# data "aws_subnet" "jenkins-subnet" {
+#   tags = {
+#     Name = "private-${var.availability-zone}-jenkins"
+#   }
+# }

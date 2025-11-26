@@ -1,4 +1,4 @@
-bucket       = "terraform-state-illuminati-red-bull"
+bucket       = "terraform-state-illuminati-red-bull-dev-01-221416552528"
 key          = "illuminati-setup/terraform.tfstate"
 region       = "us-east-1"
 use_lockfile = true

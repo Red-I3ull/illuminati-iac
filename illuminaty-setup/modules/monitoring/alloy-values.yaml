@@ -6,7 +6,7 @@ alloy:
           level  = "info"
           format = "logfmt"
       }
-    
+
       discovery.kubernetes "k8s_pods" {
           role = "pod"
       }

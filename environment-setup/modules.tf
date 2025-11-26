@@ -26,6 +26,9 @@ module "environment-eks" {
   subnet_ids_private = [
     module.environment-vpc.private-us-east-1a,
   module.environment-vpc.private-us-east-1b, ]
+  subnet_ids_public = [
+    module.environment-vpc.public-us-east-1a,
+  module.environment-vpc.public-us-east-1b,]
   subnet_ids = [
     module.environment-vpc.private-us-east-1a,
     module.environment-vpc.private-us-east-1b,
